@@ -1,0 +1,1183 @@
+<!DOCTYPE html><html lang="en-US" prefix="og: https://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>var __ez=__ez||{};__ez.stms=Date.now();__ez.evt={};__ez.script={};__ez.ck=__ez.ck||{};__ez.template={};__ez.template.isOrig=true;__ez.queue=(function(){var count=0,incr=0,items=[],timeDelayFired=false,hpItems=[],lpItems=[],allowLoad=true;var obj={func:function(name,funcName,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError){var self=this;this.name=name;this.funcName=funcName;this.parameters=parameters===null?null:(parameters instanceof Array)?parameters:[parameters];this.isBlock=isBlock;this.blockedBy=blockedBy;this.deleteWhenComplete=deleteWhenComplete;this.isError=false;this.isComplete=false;this.isInitialized=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){log("... func = "+name);self.isInitialized=true;self.isComplete=true;log("... func.apply: "+name);var funcs=self.funcName.split('.');var func=null;if(funcs.length>3){}else if(funcs.length===3){func=window[funcs[0]][funcs[1]][funcs[2]];}else if(funcs.length===2){func=window[funcs[0]][funcs[1]];}else{func=window[self.funcName];}
+    if(typeof func!=='undefined'&&func!==null){func.apply(null,this.parameters);}
+    if(self.deleteWhenComplete===true)delete items[name];if(self.isBlock===true){log("----- F'D: "+self.name);processAll();}}},file:function(name,path,isBlock,blockedBy,async,defer,proceedIfError){var self=this;this.name=name;this.path=path;this.async=async;this.defer=defer;this.isBlock=isBlock;this.blockedBy=blockedBy;this.isInitialized=false;this.isError=false;this.isComplete=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){self.isInitialized=true;log("... file = "+name);var scr=document.createElement('script');scr.src=path;if(async===true)scr.async=true;else if(defer===true)scr.defer=true;scr.onerror=function(){log("----- ERR'D: "+self.name);self.isError=true;if(self.isBlock===true){processAll();}};scr.onreadystatechange=scr.onload=function(){var state=scr.readyState;log("----- F'D: "+self.name);if((!state||/loaded|complete/.test(state))){self.isComplete=true;if(self.isBlock===true){processAll();}}};document.getElementsByTagName('head')[0].appendChild(scr);}},fileLoaded:function(name,isComplete){this.name=name;this.path="";this.async=false;this.defer=false;this.isBlock=false;this.blockedBy=[];this.isInitialized=true;this.isError=false;this.isComplete=isComplete;this.proceedIfError=false;this.isTimeDelay=false;this.process=function(){};}};function init(){window.addEventListener("load",function(){setTimeout(function(){timeDelayFired=true;log('TDELAY -----');processAll();},5000);},false);}
+    function addFile(name,path,isBlock,blockedBy,async,defer,proceedIfError,priority){var item=new obj.file(name,path,isBlock,blockedBy,async,defer,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+    items[name]=item;checkIfBlocked(item);}
+    function setallowLoad(settobool){allowLoad=settobool}
+    function addFunc(name,func,parameters,isBlock,blockedBy,autoInc,deleteWhenComplete,proceedIfError,priority){if(autoInc===true)name=name+"_"+incr++;var item=new obj.func(name,func,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+    items[name]=item;checkIfBlocked(item);}
+    function addTimeDelayFile(name,path){var item=new obj.file(name,path,false,[],false,false,true);item.isTimeDelay=true;log(name+' ... '+' FILE! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+    function addTimeDelayFunc(name,func,parameters){var item=new obj.func(name,func,parameters,false,[],true,true);item.isTimeDelay=true;log(name+' ... '+' FUNCTION! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+    function checkIfBlocked(item){if(isBlocked(item)===true||allowLoad==false)return;item.process();}
+    function isBlocked(item){if(item.isTimeDelay===true&&timeDelayFired===false){log(item.name+" blocked = TIME DELAY!");return true;}
+    if(item.blockedBy instanceof Array){for(var i=0;i<item.blockedBy.length;i++){var block=item.blockedBy[i];if(items.hasOwnProperty(block)===false){log(item.name+" blocked = "+block);return true;}else if(item.proceedIfError===true&&items[block].isError===true){return false;}else if(items[block].isComplete===false){log(item.name+" blocked = "+block);return true;}}}
+    return false;}
+    function markLoaded(filename){if(!filename||0===filename.length){return;}
+    if(filename in items){var item=items[filename];if(item.isComplete===true){log(item.name+' '+filename+': error loaded duplicate')}else{item.isComplete=true;item.isInitialized=true;}}else{items[filename]=new obj.fileLoaded(filename,true);}
+    log("markLoaded dummyfile: "+items[filename].name);}
+    function logWhatsBlocked(){for(var i in items){if(items.hasOwnProperty(i)===false)continue;var item=items[i];isBlocked(item)}}
+    function log(msg){var href=window.location.href;var reg=new RegExp('[?&]ezq=([^&#]*)','i');var string=reg.exec(href);var res=string?string[1]:null;if(res==="1")console.debug(msg);}
+    function processAll(){count++;if(count>200)return;log("let's go");processItems(hpItems);processItems(lpItems);}
+    function processItems(list){for(var i in list){if(list.hasOwnProperty(i)===false)continue;var item=list[i];if(item.isComplete===true||isBlocked(item)||item.isInitialized===true||item.isError===true){if(item.isError===true){log(item.name+': error')}else if(item.isComplete===true){log(item.name+': complete already')}else if(item.isInitialized===true){log(item.name+': initialized already')}}else{item.process();}}}
+    init();return{addFile:addFile,addDelayFile:addTimeDelayFile,addFunc:addFunc,addDelayFunc:addTimeDelayFunc,items:items,processAll:processAll,setallowLoad:setallowLoad,markLoaded:markLoaded,logWhatsBlocked:logWhatsBlocked,};})();__ez.evt.add=function(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n()},__ez.evt.remove=function(e,t,n){e.removeEventListener?e.removeEventListener(t,n,!1):e.detachEvent?e.detachEvent("on"+t,n):delete e["on"+t]};__ez.script.add=function(e){var t=document.createElement("script");t.src=e,t.async=!0,t.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(t)};__ez.dot={};__ez.vep=(function(){var pixels=[],pxURL="/detroitchicago/grapefruit.gif";function AddPixel(vID,pixelData){if(__ez.dot.isDefined(vID)&&__ez.dot.isValid(pixelData)){pixels.push({type:'video',video_impression_id:vID,domain_id:__ez.dot.getDID(),t_epoch:__ez.dot.getEpoch(0),data:__ez.dot.dataToStr(pixelData)});}}
+    function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender"){return;}
+    if(__ez.dot.isDefined(pixels)&&pixels.length>0){while(pixels.length>0){var j=5;if(j>pixels.length){j=pixels.length;}
+    var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(__ez.template.isOrig===true?1:0)+"&v="+btoa(JSON.stringify(pushPixels));__ez.dot.Fire(pixelURL);}}
+    pixels=[];}
+    return{Add:AddPixel,Fire:Fire};})();</script><script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>__ez.pel=(function(){var pixels=[],pxURL="/porpoiseant/army.gif";function AddAndFirePixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0);Fire();}
+    function AddAndFireOrigPixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0,true);Fire();}
+    function GetCurrentPixels(){return pixels;}
+    function AddPixel(adSlot,pixelData,revenue,est_revenue,bid_floor_filled,bid_floor_prev,stat_source_id,isOrig){if(!__ez.dot.isDefined(adSlot)||__ez.dot.isAnyDefined(adSlot.getSlotElementId,adSlot.ElementId)==false){return;}
+    var ad_position_id=parseInt(__ez.dot.getTargeting(adSlot,'ap'));var impId=__ez.dot.getSlotIID(adSlot),adUnit=__ez.dot.getAdUnit(adSlot,isOrig);var compId=parseInt(__ez.dot.getTargeting(adSlot,"compid"));var lineItemId=0;var creativeId=0;var ezimData=getEzimData(adSlot);if(typeof ezimData=='object'){if(ezimData.creative_id!==undefined){creativeId=ezimData.creative_id;}
+    if(ezimData.line_item_id!==undefined){lineItemId=ezimData.line_item_id;}}
+    if(__ez.dot.isDefined(impId,adUnit)&&__ez.dot.isValid(pixelData)){pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),revenue:revenue,est_revenue:est_revenue,ad_position:ad_position_id,ad_size:"",bid_floor_filled:bid_floor_filled,bid_floor_prev:bid_floor_prev,stat_source_id:stat_source_id,country_code:__ez.dot.getCC(),pageview_id:__ez.dot.getPageviewId(),comp_id:compId,line_item_id:lineItemId,creative_id:creativeId,data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig,});}}
+    function AddPixelById(impFullId,pixelData,isOrig){var vals=impFullId.split('/');if(__ez.dot.isDefined(impFullId)&&vals.length===3&&__ez.dot.isValid(pixelData)){var adUnit=vals[0],impId=vals[2];pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),pageview_id:__ez.dot.getPageviewId(),data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig});}}
+    function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender")return;if(__ez.dot.isDefined(pixels)&&pixels.length>0){var allPixels=[pixels.filter(function(pixel){return pixel.is_orig}),pixels.filter(function(pixel){return!pixel.is_orig})];allPixels.forEach(function(pixels){while(pixels.length>0){var isOrig=pixels[0].is_orig||false;var j=5;if(j>pixels.length){j=pixels.length;}
+    var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(isOrig===true?1:0)+"&sts="+btoa(JSON.stringify(pushPixels));if(typeof window.isAmp!=='undefined'&&isAmp&&typeof window._ezaq!=='undefined'&&_ezaq.hasOwnProperty("domain_id")){pixelURL+="&visit_uuid="+_ezaq['visit_uuid'];}
+    __ez.dot.Fire(pixelURL);}})}
+    pixels=[];}
+    function getEzimData(adSlot){if(typeof _ezim_d=="undefined"){return false}
+    var adUnitName=__ez.dot.getAdUnitPath(adSlot).split('/').pop();if(typeof _ezim_d==='object'&&_ezim_d.hasOwnProperty(adUnitName)){return _ezim_d[adUnitName];}
+    for(var ezimKey in _ezim_d){if(ezimKey.split('/').pop()===adUnitName){return _ezim_d[ezimKey];}}
+    return false;}
+    return{Add:AddPixel,AddAndFire:AddAndFirePixel,AddAndFireOrig:AddAndFireOrigPixel,AddById:AddPixelById,Fire:Fire,GetPixels:GetCurrentPixels,};})();</script><style>img.lazy{min-height:1px}</style><link rel="preload" href="https://thegamerhq.com/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js" as="script" />
+    <meta name="title" content="The Gamer Hq" />
+    <meta name="description" content="Gamer HQ is the real Head Quarters for Gaming News from around the Gaming Universe. We provide Gaming News from East to West From Big." />
+    <meta name="keywords" content="Gamer HQ, The Gamer HQ, Gaming News, Gaming Universe , gaming guides, gaming information" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="yandex-verification" content="31291d78d14320ca" />
+    <meta name="google-site-verification" content="nmzzDU7eMqx191qxK4U8_nQkJCY-mK_nS-8r81sDH50" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="//thegamerhq.com/wp-content/uploads/2019/07/2.png" /><link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="https://thegamerhq.com/feed/" />
+    <link rel="alternate" type="text/xml" title="RSS .92" href="https://thegamerhq.com/feed/rss/" />
+    <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="https://thegamerhq.com/feed/atom/" />
+    <link rel="pingback" href="https://thegamerhq.com/xmlrpc.php" />
+    <meta property="og:image" content="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2-1000x600.jpg" />
+    <meta name="twitter:image" content="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2-1000x600.jpg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="Pokemon Sword and Shield PC Version Full Game Free Download Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pokémon Go; the Wild Area, a completely explorable open world place with free camera motion and lively weather that has consequences on […]" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/" />
+    <meta name="twitter:title" content="Pokemon Sword and Shield PC Version Full Game Free Download" />
+    <meta name="twitter:description" content="Pokemon Sword and Shield PC Version Full Game Free Download Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pokémon Go; the Wild Area, a completely explorable open world place with free camera motion and lively weather that has consequences on […]" />
+    
+    <title>Pokemon Sword and Shield PC Version Full Game Free Download - The Gamer HQ - The Real Gaming Headquarters</title>
+    <meta name="description" content="Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pokémon Go; the" />
+    <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
+    <link rel="canonical" href="https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Pokemon Sword and Shield PC Version Full Game Free Download - The Gamer HQ - The Real Gaming Headquarters" />
+    <meta property="og:description" content="Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pokémon Go; the" />
+    <meta property="og:url" content="https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/" />
+    <meta property="og:site_name" content="The Gamer HQ - The Real Gaming Headquarters" />
+    <meta property="article:tag" content="Pokemon Sword and Shield" />
+    <meta property="article:tag" content="Pokemon Sword And Shield Download" />
+    <meta property="article:tag" content="Pokemon Sword And Shield PC Download" />
+    <meta property="article:tag" content="Pokemon Sword and Shield PC Version Full Game Free Download" />
+    <meta property="article:section" content="ACTION" />
+    <meta property="og:updated_time" content="2021-01-24T22:08:00+05:00" />
+    <meta property="og:image" content="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg" />
+    <meta property="og:image:secure_url" content="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta property="og:image:alt" content="Pokemon Sword and Shield PC Version Full Game Free Download" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="article:published_time" content="2021-01-24PKT09:02:20+05:00" />
+    <meta property="article:modified_time" content="2021-01-24PKT22:08:00+05:00" />
+    <meta property="og:video" content="https://www.youtube.com/embed/uBYORdr_TY8?feature=oembed" />
+    <meta property="ya:ovs:upload_date" content="2021-01-24PKT09:02:20+05:00" />
+    <meta property="ya:ovs:allow_embed" content="true" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pokemon Sword and Shield PC Version Full Game Free Download - The Gamer HQ - The Real Gaming Headquarters" />
+    <meta name="twitter:description" content="Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pokémon Go; the" />
+    <meta name="twitter:image" content="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="florian cravic" />
+    <meta name="twitter:label2" content="Time to read" />
+    <meta name="twitter:data2" content="2 minutes" />
+    <script type="application/ld+json" class="rank-math-schema-pro">{"@context":"https://schema.org","@graph":[{"@type":"Place","@id":"https://thegamerhq.com/#place","address":{"@type":"PostalAddress","streetAddress":"4829 Canis Heights Drive","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90071","addressCountry":"United States"}},{"@type":["AdultEntertainment","Organization"],"@id":"https://thegamerhq.com/#organization","name":"The Gamer HQ","url":"https://thegamerhq.com","email":"contact@thegamerhq.com","address":{"@type":"PostalAddress","streetAddress":"4829 Canis Heights Drive","addressLocality":"Los Angeles","addressRegion":"CA","postalCode":"90071","addressCountry":"United States"},"logo":{"@type":"ImageObject","@id":"https://thegamerhq.com/#logo","url":"https://thegamerhq.com/wp-content/uploads/2020/05/logo.png","caption":"The Gamer HQ","inLanguage":"en-US","width":"200","height":"50"},"openingHours":["Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday 09:00-17:00"],"location":{"@id":"https://thegamerhq.com/#place"},"image":{"@id":"https://thegamerhq.com/#logo"},"telephone":"+(1) 715-508-1232"},{"@type":"WebSite","@id":"https://thegamerhq.com/#website","url":"https://thegamerhq.com","name":"The Gamer HQ","publisher":{"@id":"https://thegamerhq.com/#organization"},"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg","url":"https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg","width":"1280","height":"720","caption":"Pokemon Sword and Shield PC Version Full Game Free Download","inLanguage":"en-US"},{"@type":"Person","@id":"https://thegamerhq.com/author/florian/","name":"florian cravic","url":"https://thegamerhq.com/author/florian/","image":{"@type":"ImageObject","@id":"https://secure.gravatar.com/avatar/81f7edb259f7fb572897e1056f9229c8?s=96&amp;d=mm&amp;r=g","url":"https://secure.gravatar.com/avatar/81f7edb259f7fb572897e1056f9229c8?s=96&amp;d=mm&amp;r=g","caption":"florian cravic","inLanguage":"en-US"},"worksFor":{"@id":"https://thegamerhq.com/#organization"}},{"@type":"WebPage","@id":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#webpage","url":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/","name":"Pokemon Sword and Shield PC Version Full Game Free Download - The Gamer HQ - The Real Gaming Headquarters","datePublished":"2021-01-24T09:02:20+05:00","dateModified":"2021-01-24T22:08:00+05:00","author":{"@id":"https://thegamerhq.com/author/florian/"},"isPartOf":{"@id":"https://thegamerhq.com/#website"},"primaryImageOfPage":{"@id":"https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg"},"inLanguage":"en-US"},{"@type":"BlogPosting","headline":"Pokemon Sword and Shield PC Version Full Game Free Download - The Gamer HQ - The Real Gaming Headquarters","description":"Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pok\u00e9mon Go; the","datePublished":"2021-01-24PKT09:02:20+05:00","dateModified":"2021-01-24PKT22:08:00+05:00","image":{"@id":"https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg"},"author":{"@id":"https://thegamerhq.com/author/florian/"},"name":"Pokemon Sword and Shield PC Version Full Game Free Download - The Gamer HQ - The Real Gaming Headquarters","@id":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#schema-326283","isPartOf":{"@id":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#webpage"},"publisher":{"@id":"https://thegamerhq.com/#organization"},"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#webpage"}},{"@type":"VideoObject","name":"Pokemon Sword and Shield PC Version Full Game Free Download - The Gamer HQ - The Real Gaming Headquarters","description":"Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pok\u00e9mon Go; the","uploadDate":"2021-01-24PKT09:02:20+05:00","thumbnailUrl":"https://thegamerhq.com/wp-content/uploads/2021/01/hqdefault-312.jpg","embedUrl":"https://www.youtube.com/embed/uBYORdr_TY8?feature=oembed","width":"200","height":"113","isFamilyFriendly":"True","@id":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#schema-326284","isPartOf":{"@id":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#webpage"},"publisher":{"@id":"https://thegamerhq.com/#organization"},"inLanguage":"en-US"}]}</script>
+    
+    <link rel="dns-prefetch" href="//netdna.bootstrapcdn.com" />
+    <link rel="dns-prefetch" href="//s.w.org" />
+    <link rel="alternate" type="application/rss+xml" title="The Gamer HQ - The Real Gaming Headquarters » Feed" href="https://thegamerhq.com/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="The Gamer HQ - The Real Gaming Headquarters » Comments Feed" href="https://thegamerhq.com/comments/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="The Gamer HQ - The Real Gaming Headquarters » Pokemon Sword and Shield PC Version Full Game Free Download Comments Feed" href="https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/feed/" />
+    <script type="text/javascript">
+                window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/thegamerhq.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.3"}};
+                !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+            </script>
+    <style type="text/css">
+    img.wp-smiley,
+    img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 .07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+    }
+    </style>
+    <link rel="stylesheet" href="https://thegamerhq.com/wp-content/cache/minify/a5ff7.css" media="all" />
+    <style id="wp-block-library-inline-css" type="text/css">
+    .has-text-align-justify{text-align:justify;}
+    </style>
+    <link rel="stylesheet" href="https://thegamerhq.com/wp-content/cache/minify/9b5b6.css" media="all" />
+    <link rel="stylesheet" id="mvp-fontawesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css?ver=5.8.3" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://thegamerhq.com/wp-content/cache/minify/021cc.css" media="all" />
+    <!--[if lt IE 10]>
+    <link rel='stylesheet' id='mvp-iecss-css'  href='https://thegamerhq.com/wp-content/themes/mcm/css/iecss.css?ver=5.8.3' type='text/css' media='all' />
+    <![endif]-->
+    <script src="https://thegamerhq.com/wp-content/cache/minify/818c0.js"></script>
+    <script type="text/javascript" id="cookie-law-info-js-extra">
+    /* <![CDATA[ */
+    var Cli_Data = {"nn_cookie_ids":[],"cookielist":[],"non_necessary_cookies":[],"ccpaEnabled":"1","ccpaRegionBased":"","ccpaBarEnabled":"1","strictlyEnabled":["necessary","obligatoire"],"ccpaType":"ccpa_gdpr","js_blocking":"1","custom_integration":"","triggerDomRefresh":"","secure_cookies":""};
+    var cli_cookiebar_settings = {"animate_speed_hide":"500","animate_speed_show":"500","background":"#FFF","border":"#b1a6a6c2","border_on":"","button_1_button_colour":"#61a229","button_1_button_hover":"#4e8221","button_1_link_colour":"#fff","button_1_as_button":"1","button_1_new_win":"","button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":"","button_2_hidebar":"","button_3_button_colour":"#dedfe0","button_3_button_hover":"#b2b2b3","button_3_link_colour":"#333333","button_3_as_button":"1","button_3_new_win":"","button_4_button_colour":"#dedfe0","button_4_button_hover":"#b2b2b3","button_4_link_colour":"#333333","button_4_as_button":"1","button_7_button_colour":"#61a229","button_7_button_hover":"#4e8221","button_7_link_colour":"#fff","button_7_as_button":"1","button_7_new_win":"","font_family":"inherit","header_fix":"","notify_animate_hide":"1","notify_animate_show":"","notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":"","scroll_close_reload":"","accept_close_reload":"","reject_close_reload":"","showagain_tab":"","showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#333333","show_once_yn":"","show_once":"10000","logging_on":"","as_popup":"","popup_overlay":"1","bar_heading_text":"","cookie_bar_as":"banner","popup_showagain_position":"bottom-right","widget_position":"left"};
+    var log_object = {"ajax_url":"https:\/\/thegamerhq.com\/wp-admin\/admin-ajax.php"};
+    /* ]]> */
+    </script>
+    <script src="https://thegamerhq.com/wp-content/cache/minify/a6c57.js"></script>
+    <script type="text/javascript" id="cookie-law-info-ccpa-js-extra">
+    /* <![CDATA[ */
+    var ccpa_data = {"opt_out_prompt":"Do you really wish to opt out?","opt_out_confirm":"Confirm","opt_out_cancel":"Cancel"};
+    /* ]]> */
+    </script>
+    <script src="https://thegamerhq.com/wp-content/cache/minify/300d6.js"></script>
+    <link rel="https://api.w.org/" href="https://thegamerhq.com/wp-json/" /><link rel="alternate" type="application/json" href="https://thegamerhq.com/wp-json/wp/v2/posts/33280" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://thegamerhq.com/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://thegamerhq.com/wp-includes/wlwmanifest.xml" />
+    <meta name="generator" content="WordPress 5.8.3" />
+    <link rel="shortlink" href="https://thegamerhq.com/?p=33280" />
+    <link rel="alternate" type="application/json+oembed" href="https://thegamerhq.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthegamerhq.com%2F2021%2F01%2F24%2Fpokemon-sword-and-shield-pc-version-full-game-free-download-3%2F" />
+    <link rel="alternate" type="text/xml+oembed" href="https://thegamerhq.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthegamerhq.com%2F2021%2F01%2F24%2Fpokemon-sword-and-shield-pc-version-full-game-free-download-3%2F&amp;format=xml" />
+    <style type="text/css">img#wpstats{display:none}</style>
+    <style type="text/css">
+    
+    @import url(//fonts.googleapis.com/css?family=Oswald:400,700|Lato:400,700|Work+Sans:900|Montserrat:400,700|Open+Sans:800|Playfair+Display:400,700,900|Quicksand|Raleway:200,400,700|Roboto+Slab:400,700|Work+Sans:100,200,300,400,500,600,700,800,900|Montserrat:100,200,300,400,500,600,700,800,900|Work+Sans:100,200,300,400,400italic,500,600,700,700italic,800,900|Lato:100,200,300,400,400italic,500,600,700,700italic,800,900|Montserrat:100,200,300,400,500,600,700,800,900&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek-ext,greek,vietnamese);
+    
+    #wallpaper {
+        background: url() no-repeat 50% 0;
+        }
+    body,
+    .blog-widget-text p,
+    .feat-widget-text p,
+    .post-info-right,
+    span.post-excerpt,
+    span.feat-caption,
+    span.soc-count-text,
+    #content-main p,
+    #commentspopup .comments-pop,
+    .archive-list-text p,
+    .author-box-bot p,
+    #post-404 p,
+    .foot-widget,
+    #home-feat-text p,
+    .feat-top2-left-text p,
+    .feat-wide1-text p,
+    .feat-wide4-text p,
+    #content-main table,
+    .foot-copy p,
+    .video-main-text p {
+        font-family: 'Lato', sans-serif;
+        }
+    
+    a,
+    a:visited,
+    .post-info-name a {
+        color: #eb0254;
+        }
+    
+    a:hover {
+        color: #999999;
+        }
+    
+    .fly-but-wrap,
+    span.feat-cat,
+    span.post-head-cat,
+    .prev-next-text a,
+    .prev-next-text a:visited,
+    .prev-next-text a:hover {
+        background: #eb0254;
+        }
+    
+    .fly-but-wrap {
+        background: #eb0254;
+        }
+    
+    .fly-but-wrap span {
+        background: #ffffff;
+        }
+    
+    .woocommerce .star-rating span:before {
+        color: #eb0254;
+        }
+    
+    .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+    .woocommerce .widget_price_filter .ui-slider .ui-slider-handle {
+        background-color: #eb0254;
+        }
+    
+    .woocommerce span.onsale,
+    .woocommerce #respond input#submit.alt,
+    .woocommerce a.button.alt,
+    .woocommerce button.button.alt,
+    .woocommerce input.button.alt,
+    .woocommerce #respond input#submit.alt:hover,
+    .woocommerce a.button.alt:hover,
+    .woocommerce button.button.alt:hover,
+    .woocommerce input.button.alt:hover {
+        background-color: #eb0254;
+        }
+    
+    span.post-header {
+        border-top: 4px solid #eb0254;
+        }
+    
+    #main-nav-wrap,
+    nav.main-menu-wrap,
+    .nav-logo,
+    .nav-right-wrap,
+    .nav-menu-out,
+    .nav-logo-out,
+    #head-main-top {
+        -webkit-backface-visibility: hidden;
+        background: #eb0254;
+        }
+    
+    nav.main-menu-wrap ul li a,
+    .nav-menu-out:hover ul li:hover a,
+    .nav-menu-out:hover span.nav-search-but:hover i,
+    .nav-menu-out:hover span.nav-soc-but:hover i,
+    span.nav-search-but i,
+    span.nav-soc-but i {
+        color: #ffffff;
+        }
+    
+    .nav-menu-out:hover li.menu-item-has-children:hover a:after,
+    nav.main-menu-wrap ul li.menu-item-has-children a:after {
+        border-color: #ffffff transparent transparent transparent;
+        }
+    
+    .nav-menu-out:hover ul li a,
+    .nav-menu-out:hover span.nav-search-but i,
+    .nav-menu-out:hover span.nav-soc-but i {
+        color: #fdacc8;
+        }
+    
+    .nav-menu-out:hover li.menu-item-has-children a:after {
+        border-color: #fdacc8 transparent transparent transparent;
+        }
+    
+    .nav-menu-out:hover ul li ul.mega-list li a,
+    .side-list-text p,
+    .row-widget-text p,
+    .blog-widget-text h2,
+    .feat-widget-text h2,
+    .archive-list-text h2,
+    h2.author-list-head a,
+    .mvp-related-text a {
+        color: #222222;
+        }
+    
+    ul.mega-list li:hover a,
+    ul.side-list li:hover .side-list-text p,
+    ul.row-widget-list li:hover .row-widget-text p,
+    ul.blog-widget-list li:hover .blog-widget-text h2,
+    .feat-widget-wrap:hover .feat-widget-text h2,
+    ul.archive-list li:hover .archive-list-text h2,
+    ul.archive-col-list li:hover .archive-list-text h2,
+    h2.author-list-head a:hover,
+    .mvp-related-posts ul li:hover .mvp-related-text a {
+        color: #999999 !important;
+        }
+    
+    span.more-posts-text,
+    a.inf-more-but,
+    #comments-button a,
+    #comments-button span.comment-but-text {
+        border: 1px solid #eb0254;
+        }
+    
+    span.more-posts-text,
+    a.inf-more-but,
+    #comments-button a,
+    #comments-button span.comment-but-text {
+        color: #eb0254 !important;
+        }
+    
+    #comments-button a:hover,
+    #comments-button span.comment-but-text:hover,
+    a.inf-more-but:hover,
+    span.more-posts-text:hover {
+        background: #eb0254;
+        }
+    
+    nav.main-menu-wrap ul li a,
+    ul.col-tabs li a,
+    nav.fly-nav-menu ul li a,
+    .foot-menu .menu li a {
+        font-family: 'Montserrat', sans-serif;
+        }
+    
+    .feat-top2-right-text h2,
+    .side-list-text p,
+    .side-full-text p,
+    .row-widget-text p,
+    .feat-widget-text h2,
+    .blog-widget-text h2,
+    .prev-next-text a,
+    .prev-next-text a:visited,
+    .prev-next-text a:hover,
+    span.post-header,
+    .archive-list-text h2,
+    #woo-content h1.page-title,
+    .woocommerce div.product .product_title,
+    .woocommerce ul.products li.product h3,
+    .video-main-text h2,
+    .mvp-related-text a {
+        font-family: 'Montserrat', sans-serif;
+        }
+    
+    .feat-wide-sub-text h2,
+    #home-feat-text h2,
+    .feat-top2-left-text h2,
+    .feat-wide1-text h2,
+    .feat-wide4-text h2,
+    .feat-wide5-text h2,
+    h1.post-title,
+    #content-main h1.post-title,
+    #post-404 h1,
+    h1.post-title-wide,
+    #content-main blockquote p,
+    #commentspopup #content-main h1 {
+        font-family: 'Work Sans', sans-serif;
+        }
+    
+    h3.home-feat-title,
+    h3.side-list-title,
+    #infscr-loading,
+    .score-nav-menu select,
+    h1.cat-head,
+    h1.arch-head,
+    h2.author-list-head,
+    h3.foot-head,
+    .woocommerce ul.product_list_widget span.product-title,
+    .woocommerce ul.product_list_widget li a,
+    .woocommerce #reviews #comments ol.commentlist li .comment-text p.meta,
+    .woocommerce .related h2,
+    .woocommerce div.product .woocommerce-tabs .panel h2,
+    .woocommerce div.product .product_title,
+    #content-main h1,
+    #content-main h2,
+    #content-main h3,
+    #content-main h4,
+    #content-main h5,
+    #content-main h6 {
+        font-family: 'Work Sans', sans-serif;
+        }
+    
+    </style>
+    <style type="text/css">
+    
+    
+    .post-cont-out,
+    .post-cont-in {
+        margin-right: 0;
+        }
+    
+    .nav-links {
+        display: none;
+        }
+    
+    
+    
+    
+    
+    
+    #main-nav-wrap {
+        border-bottom: none;
+        }
+    
+    
+    </style>
+    <script type="text/javascript">
+                    var cli_flush_cache = true;
+                </script>
+    <meta name="onesignal" content="wordpress-plugin" />
+    <script>
+    
+          window.OneSignal = window.OneSignal || [];
+    
+          OneSignal.push( function() {
+            OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.php";
+                          OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.php";
+                          OneSignal.SERVICE_WORKER_PARAM = { scope: "/" };
+            OneSignal.setDefaultNotificationUrl("https://thegamerhq.com");
+            var oneSignal_options = {};
+            window._oneSignalInitOptions = oneSignal_options;
+    
+            oneSignal_options['wordpress'] = true;
+    oneSignal_options['appId'] = '70ca2891-9f6a-4ed1-a30a-0ba28ef8c1c8';
+    oneSignal_options['allowLocalhostAsSecureOrigin'] = true;
+    oneSignal_options['welcomeNotification'] = { };
+    oneSignal_options['welcomeNotification']['title'] = "";
+    oneSignal_options['welcomeNotification']['message'] = "";
+    oneSignal_options['path'] = "https://thegamerhq.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+    oneSignal_options['safari_web_id'] = "web.onesignal.auto.6a76584b-4903-4cb9-b550-82d6a06974fc";
+    oneSignal_options['promptOptions'] = { };
+    oneSignal_options['notifyButton'] = { };
+    oneSignal_options['notifyButton']['enable'] = true;
+    oneSignal_options['notifyButton']['position'] = 'bottom-right';
+    oneSignal_options['notifyButton']['theme'] = 'default';
+    oneSignal_options['notifyButton']['size'] = 'medium';
+    oneSignal_options['notifyButton']['showCredit'] = true;
+    oneSignal_options['notifyButton']['text'] = {};
+                    OneSignal.init(window._oneSignalInitOptions);
+                    OneSignal.showSlidedownPrompt();      });
+    
+          function documentInitOneSignal() {
+            var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+    
+            var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+              oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+          }
+    
+          if (document.readyState === 'complete') {
+               documentInitOneSignal();
+          }
+          else {
+               window.addEventListener("load", function(event){
+                   documentInitOneSignal();
+              });
+          }
+        </script>
+    <script id="google_gtagjs" src="https://www.googletagmanager.com/gtag/js?id=UA-144164418-1" async="async" type="text/javascript"></script>
+    <script id="google_gtagjs-inline" type="text/javascript">
+    window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-144164418-1', {} );
+    </script>
+    <style>
+    h1,h2{
+        text-transform:capitalize !important;
+        }	
+    </style>
+    <script type="text/javascript">
+    var infolinks_pid = 3350100;
+    var infolinks_wsid = 0;
+    </script>
+    <script type="text/javascript">var ezouid = "1";</script><base href="https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/"><script type='text/javascript'>
+    var ezoTemplate = 'old_site_noads';
+    if(typeof ezouid == 'undefined')
+    {
+        var ezouid = 'none';
+    }
+    var ezoFormfactor = '1';
+    var ezo_elements_to_check = Array();
+    </script>
+    <script data-ezscrex="false" type='text/javascript'>
+    var soc_app_id = '0';
+    var did = 309155;
+    var ezdomain = 'thegamerhq.com';
+    var ezoicSearchable = 1;
+    </script>
+    
+    
+    <script data-ezscrex="false" type="text/javascript" data-cfasync="false">var _ezaq = {"ad_cache_level":0,"ad_lazyload_version":0,"ad_load_version":0,"city":"Sydney","country":"AU","days_since_last_visit":0,"domain_id":309155,"engaged_time_visit":5,"ezcache_level":2,"ezcache_skip_code":0,"form_factor_id":1,"framework_id":1,"is_return_visitor":true,"is_sitespeed":0,"last_page_load":"1642566588788","last_pageview_id":"e0b1a175-aa46-462c-4630-9b15514694ac","lt_cache_level":0,"metro_code":0,"page_ad_positions":"","page_view_count":2,"page_view_id":"a63c1519-8914-4371-6077-c04d0ab44eba","position_selection_id":0,"postal_code":"2001","pv_event_count":0,"response_size_orig":90798,"response_time_orig":5,"serverid":"13.239.112.137:8751","state":"NSW","t_epoch":1642566607,"template_id":120,"time_on_site_visit":21,"url":"https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/","user_id":0,"weather_precipitation":0,"weather_summary":"","weather_temperature":0,"word_count":1205,"worst_bad_word_level":0};var _ezExtraQueries = "&ez_orig=1";</script>
+    <script data-ezscrex='false' data-pagespeed-no-defer data-cfasync='false'>
+    function create_ezolpl(pvID, rv) {
+        var d = new Date();
+        d.setTime(d.getTime() + (365*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        __ez.ck.setByCat("ezux_lpl_309155=" + new Date().getTime() + "|" + pvID + "|" + rv + "; " + expires, 3);
+    }
+    function attach_ezolpl(pvID, rv) {
+        if (document.readyState === "complete") {
+            create_ezolpl(pvID, rv);
+        }
+        if(window.attachEvent) {
+            window.attachEvent("onload", create_ezolpl, pvID, rv);
+        } else {
+            if(window.onload) {
+                var curronload = window.onload;
+                var newonload = function(evt) {
+                    curronload(evt);
+                    create_ezolpl(pvID, rv);
+                };
+                window.onload = newonload;
+            } else {
+                window.onload = create_ezolpl.bind(null, pvID, rv);
+            }
+        }
+    }
+    
+    __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["a63c1519-8914-4371-6077-c04d0ab44eba", "true"], false, ['/detroitchicago/boise.js'], true, false, false, false);
+    </script>
+    <script type="text/javascript">var _audins_dom="thegamerhq_com",_audins_did=309155;__ez.queue.addFile('/detroitchicago/cmbv2.js', '/detroitchicago/cmbv2.js?gcb=195-0&cb=04-1y02-5y06-12y07-1y19-5y0b-5y0d-14y13-3y17-4y1c-2y21-3y53-1&cmbcb=20&sj=x04x02x06x07x19x0bx0dx13x17x1cx21x53', true, [], true, false, true, false);</script>
+    <script type="text/javascript" defer>__ez.queue.addFile('/detroitchicago/cmbdv2.js', '/detroitchicago/cmbdv2.js?gcb=195-0&cb=03-5y0c-5y18-4&cmbcb=20&sj=x03x0cx18', true, ['/detroitchicago/cmbv2.js'], true, false, true, false);</script></head>
+    <body data-rsssl="1" class="post-template-default single single-post postid-33280 single-format-standard">
+    <div id="site" class="left relative">
+    <div id="site-wrap" class="left relative">
+    <div id="fly-wrap">
+    <div class="fly-wrap-out">
+    <div class="fly-side-wrap">
+    <ul class="fly-bottom-soc left relative">
+    <li class="rss-soc">
+    <a href="https://thegamerhq.com/feed/rss/" target="_blank">
+    <i class="fa fa-rss fa-2"></i>
+    </a>
+    </li>
+    </ul>
+    </div>
+    <div class="fly-wrap-in">
+    <div id="fly-menu-wrap">
+    <nav class="fly-nav-menu left relative">
+    <div class="menu"><ul>
+    <li class="page_item page-item-55"><a href="https://thegamerhq.com/about-us/">About Us</a></li>
+    <li class="page_item page-item-41"><a href="https://thegamerhq.com/contact-us/">Contact Us</a></li>
+    <li class="page_item page-item-52776"><a href="https://thegamerhq.com/cookie-policy/">Cookie Policy</a></li>
+    <li class="page_item page-item-39"><a href="https://thegamerhq.com/disclaimer/">Disclaimer</a></li>
+    <li class="page_item page-item-15"><a href="https://thegamerhq.com/dmca-policy/">DMCA Policy</a></li>
+    <li class="page_item page-item-78"><a href="https://thegamerhq.com/">Home</a></li>
+    <li class="page_item page-item-95"><a href="https://thegamerhq.com/our-staff/">Our Staff</a></li>
+    <li class="page_item page-item-7"><a href="https://thegamerhq.com/privacy-policy-2/">Privacy Policy</a></li>
+    <li class="page_item page-item-58"><a href="https://thegamerhq.com/terms-and-conditions/">Terms and Conditions</a></li>
+    <li class="page_item page-item-47230"><a href="https://thegamerhq.com/write-for-us/">Write For Us</a></li>
+    </ul></div>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </div> <div id="head-main-wrap" class="left relative">
+    <div id="head-main-top" class="left relative">
+    <div class="leader-wrap-out">
+    <div class="leader-wrap-in">
+    <div id="leader-wrap" class="left relative">
+    
+    <div id="ezoic-pub-ad-placeholder-101"> </div>
+     </div>
+    </div>
+    </div>
+    </div>
+    <div id="main-nav-wrap">
+    <div class="nav-out">
+    <div class="nav-in">
+    <div id="main-nav-cont" class="left" itemscope="" itemtype="http://schema.org/Organization">
+    <div class="nav-logo-out">
+    <div class="nav-left-wrap left relative">
+    <div class="fly-but-wrap left relative">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+    <div class="nav-logo left">
+    <a itemprop="url" href="https://thegamerhq.com/"><img class="lazy" itemprop="logo" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%201%201&#39;%3E%3C/svg%3E" data-src="//thegamerhq.com/wp-content/uploads/2019/06/addtext_com_MDczMTQ3OTIz.png" alt="The Gamer HQ – The Real Gaming Headquarters" data-rjs="2" /></a>
+    <h2 class="mvp-logo-title">The Gamer HQ – The Real Gaming Headquarters</h2>
+    </div>
+    </div>
+    <div class="nav-logo-in">
+    <div class="nav-menu-out">
+    <div class="nav-menu-in">
+    <nav class="main-menu-wrap left">
+    <div class="menu"><ul>
+    <li class="page_item page-item-55"><a href="https://thegamerhq.com/about-us/">About Us</a></li>
+    <li class="page_item page-item-41"><a href="https://thegamerhq.com/contact-us/">Contact Us</a></li>
+    <li class="page_item page-item-52776"><a href="https://thegamerhq.com/cookie-policy/">Cookie Policy</a></li>
+    <li class="page_item page-item-39"><a href="https://thegamerhq.com/disclaimer/">Disclaimer</a></li>
+    <li class="page_item page-item-15"><a href="https://thegamerhq.com/dmca-policy/">DMCA Policy</a></li>
+    <li class="page_item page-item-78"><a href="https://thegamerhq.com/">Home</a></li>
+    <li class="page_item page-item-95"><a href="https://thegamerhq.com/our-staff/">Our Staff</a></li>
+    <li class="page_item page-item-7"><a href="https://thegamerhq.com/privacy-policy-2/">Privacy Policy</a></li>
+    <li class="page_item page-item-58"><a href="https://thegamerhq.com/terms-and-conditions/">Terms and Conditions</a></li>
+    <li class="page_item page-item-47230"><a href="https://thegamerhq.com/write-for-us/">Write For Us</a></li>
+    </ul></div>
+    </nav>
+    </div>
+    <div class="nav-right-wrap relative">
+    <div class="nav-search-wrap left relative">
+    <span class="nav-search-but left"><i class="fa fa-search fa-2"></i></span>
+    <div class="search-fly-wrap">
+    <form method="get" id="searchform" action="https://thegamerhq.com/">
+    <input type="text" name="s" id="s" value="Type search term and press enter" onfocus="if (this.value == &#34;Type search term and press enter&#34;) { this.value = &#34;&#34;; }" onblur="if (this.value == &#34;&#34;) { this.value = &#34;Type search term and press enter&#34;; }" />
+    <input type="hidden" id="searchsubmit" value="Search" />
+    </form> </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div id="body-main-wrap" class="left relative" itemscope="" itemtype="http://schema.org/NewsArticle">
+    <meta itemscope="" itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/" />
+    <div id="post-wide-wrap" class="left relative">
+    <div class="post-wide-img1 left relative" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+    <img width="1280" height="720" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%201280%20720&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg" class="attachment- size- wp-post-image lazy" alt="Pokemon Sword and Shield PC Version Full Game Free Download" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg 1280w, https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2-300x169.jpg 300w, https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2-1024x576.jpg 1024w, https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2-768x432.jpg 768w" data-sizes="(max-width: 1280px) 100vw, 1280px" /> <meta itemprop="url" content="https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2.jpg" />
+    <meta itemprop="width" content="1280" />
+    <meta itemprop="height" content="720" />
+    <div class="post-wide-text1">
+    <a class="post-cat-link" href="https://thegamerhq.com/category/action/"><span class="feat-cat">ACTION</span></a>
+    <h1 class="post-title-wide entry-title " itemprop="headline">Pokemon Sword and Shield PC Version Full Game Free Download</h1>
+    <span class="feat-caption">Pokemon Sword and Shield PC Version Full Game Free Download</span>
+    </div>
+    </div>
+    </div>
+    <div class="body-main-out relative">
+    <div class="body-main-in">
+    <div id="body-main-cont" class="left relative">
+    <div id="post-main-wrap" class="left relative">
+    <div class="post-wrap-out1">
+    <div class="post-wrap-in1">
+    <div id="post-left-col" class="relative">
+    <article id="post-area" class="post-33280 post type-post status-publish format-standard has-post-thumbnail hentry category-action category-adventure tag-pokemon-sword-and-shield tag-pokemon-sword-and-shield-download tag-pokemon-sword-and-shield-pc-download tag-pokemon-sword-and-shield-pc-version-full-game-free-download">
+    <div id="content-area" itemprop="articleBody" class="post-33280 post type-post status-publish format-standard has-post-thumbnail hentry category-action category-adventure tag-pokemon-sword-and-shield tag-pokemon-sword-and-shield-download tag-pokemon-sword-and-shield-pc-download tag-pokemon-sword-and-shield-pc-version-full-game-free-download">
+    <div class="post-cont-out">
+    <div class="post-cont-in">
+    <div id="content-main" class="left relative">
+    <header id="post-header">
+    <div id="post-info-wrap" class="left relative">
+    <div class="post-info-out">
+    <div class="post-info-img left relative">
+    <img alt="" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2050%2050&#39;%3E%3C/svg%3E" data-src="https://secure.gravatar.com/avatar/81f7edb259f7fb572897e1056f9229c8?s=50&amp;d=mm&amp;r=g" data-srcset="https://secure.gravatar.com/avatar/81f7edb259f7fb572897e1056f9229c8?s=100&amp;d=mm&amp;r=g 2x" class="avatar avatar-50 photo lazy" height="50" width="50" loading="lazy" /> </div>
+    <div class="post-info-in">
+    <div class="post-info-right left relative">
+    <div class="post-info-name left relative" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+    <span class="post-info-text">By</span> <span class="author-name vcard fn author" itemprop="name"><a href="https://thegamerhq.com/author/florian/" title="Posts by florian cravic" rel="author">florian cravic</a></span> <span class="author-email"><a href="/cdn-cgi/l/email-protection#d7b1bbb8a5beb6b997a3bfb2b0b6bab2a5bfa6f9b4b8ba"><i class="fa fa-envelope fa-2"></i></a></span> </div>
+    <div class="post-info-date left relative">
+    <span class="post-info-text">Posted on</span> <span class="post-date updated"><time class="post-date updated" itemprop="datePublished" datetime="2021-01-24">January 24, 2021</time></span>
+    <meta itemprop="dateModified" content="2021-01-24" />
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </header>
+    <section class="social-sharing-top">
+    <a href="#" onclick="window.open(&#39;http://www.facebook.com/sharer.php?u=https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/&amp;t=Pokemon Sword and Shield PC Version Full Game Free Download&#39;, &#39;facebookShare&#39;, &#39;width=626,height=436&#39;); return false;" title="Share on Facebook"><div class="facebook-share"><span class="fb-but1"><i class="fa fa-facebook fa-2"></i></span><span class="social-text">Share</span></div></a>
+    <a href="#" onclick="window.open(&#39;http://twitter.com/share?text=Pokemon Sword and Shield PC Version Full Game Free Download -&amp;url=https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/&#39;, &#39;twitterShare&#39;, &#39;width=626,height=436&#39;); return false;" title="Tweet This Post"><div class="twitter-share"><span class="twitter-but1"><i class="fa fa-twitter fa-2"></i></span><span class="social-text">Tweet</span></div></a>
+    <a href="whatsapp://send?text=Pokemon Sword and Shield PC Version Full Game Free Download https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/"><div class="whatsapp-share"><span class="whatsapp-but1"><i class="fa fa-whatsapp fa-2"></i></span><span class="social-text">Share</span></div></a>
+    <a href="#" onclick="window.open(&#39;http://pinterest.com/pin/create/button/?url=https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/&amp;media=https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2-1000x600.jpg&amp;description=Pokemon Sword and Shield PC Version Full Game Free Download&#39;, &#39;pinterestShare&#39;, &#39;width=750,height=350&#39;); return false;" title="Pin This Post"><div class="pinterest-share"><span class="pinterest-but1"><i class="fa fa-pinterest-p fa-2"></i></span><span class="social-text">Share</span></div></a>
+    <a href="/cdn-cgi/l/email-protection#88b7fbfdeae2edebfcb5d8e7e3ede5e7e6a8dbffe7faeca8e9e6eca8dbe0e1ede4eca8d8cba8deedfafbe1e7e6a8cefde4e4a8cfe9e5eda8cefaededa8cce7ffe6e4e7e9ecaee9e5f8b3cac7ccd1b5c1a8eee7fde6eca8fce0e1fba8e9fafce1ebe4eda8e1e6fcedfaedfbfce1e6efa8e9e6eca8fce0e7fdefe0fca8e7eea8fbe0e9fae1e6efa8e1fca8ffe1fce0a8f1e7fda6a8cbe0edebe3a8e1fca8e7fdfcb2a8e0fcfcf8fbb2a7a7fce0edefe9e5edfae0f9a6ebe7e5a7bab8bab9a7b8b9a7babca7f8e7e3ede5e7e6a5fbffe7faeca5e9e6eca5fbe0e1ede4eca5f8eba5feedfafbe1e7e6a5eefde4e4a5efe9e5eda5eefaededa5ece7ffe6e4e7e9eca5bba7"><div class="email-share"><span class="email-but"><i class="fa fa-envelope fa-2"></i></span><span class="social-text">Email</span></div></a>
+    <a href="https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#respond"><div class="social-comments comment-click-33280"><i class="fa fa-commenting fa-2"></i><span class="social-text-com">Comments</span></div></a>
+    </section>
+    <h2 style="text-align: center;">Pokemon Sword and Shield PC Version Full Game Free Download</h2>
+    <p>Several new attributes for the matches will also be firsts for the show, for example, cooperative stunt experiences, akin to those found in Pokémon Go; the Wild Area, a completely explorable open world place with free camera motion and lively weather that has consequences on which Pokémon species look at a particular period plus”Dynamax” and”Gigantamax” forms for Pokémon.</p>
+    <p>Both empower Pokémon to briefly expand to giant size, together with Gigantamax being restricted to pick Pokémon and feature various kinds from the Pokémon’s standard look. A brand new mechanic called”Poké Jobs” jobs the participant’s Pokémon with finishing requests, like helping in cooking or construction, to obtain expertise or rare things. Additionally, Pokémon native into the game’s area Can be moved to the games in the Nintendo 3DS program Pokémon Bank,</p>
+    <p>Pokémon Go, and Pokémon: Let’s Move, Pikachu! And Let’s Move, Eevee! Through the Pokémon Home service. Pokémon Gyms create a return after being absent in Sun, Moon, Ultra Sun, and Ultra Moon. As is normal with all the show, both games have version-exclusive attributes between them, for example accessible Pokémon and, for the first time, Gym Leaders. Some attributes from past entries, including Super Evolution and Z-Moves, are absent in the matches. A’Camp’ style is introduced that permits the participant to invest some time interacting playing their Pokémon and also to cook unique kinds of curry that provide bonuses for Pokémon. New customization options for the player personality have been inserted, such as outerwear and other accessories. The PC box could be retrieved in certain areas outside Pokémon Centers.</p>
+    <p><iframe loading="lazy" title="Pokémon Sword and Shield Trailer - New Pokemon, Legendaries, Dynamax" width="1000" height="563" src="https://www.youtube.com/embed/uBYORdr_TY8?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></p>
+    <p><strong>How to install the Game in 5 simple steps.</strong></p>
+    <p>1. Click on the “Download Game” button for a complete installation.<br />
+    2. Download the “Pokemon Sword and Shield” Installer setup (NOTE: This setup is supported by resumable download).<br />
+    3. Open the Game Installer, Click Next, and choose the directory where to Install.<br />
+    4. Let it Download Game in the specified directory of your laptop.<br />
+    5. Run the Game and Enjoy Playing Full Version Game.</p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <div class="su-button-center"><a href="https://thegamerhq.com/thesetup" class="su-button su-button-style-bubbles" style="color:#000000;background-color:#11ecb0;border-color:#0ebd8d;border-radius:17px;-moz-border-radius:17px;-webkit-border-radius:17px" target="__blank" rel="lightbox" title="Download Game" id="01"><span style="color:#000000;padding:0px 40px;font-size:29px;line-height:58px;border-color:#59f2c8;border-radius:17px;-moz-border-radius:17px;-webkit-border-radius:17px;text-shadow:0px 0px 0px ;-moz-text-shadow:0px 0px 0px ;-webkit-text-shadow:0px 0px 0px "> Download Game</span></a></div>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <div style="font-size: 0px; height: 0px; line-height: 0px; margin: 0; padding: 0; clear: both;"></div> <span class="mvp-meta-wide-title" itemprop="headline">Pokemon Sword and Shield PC Version Full Game Free Download</span>
+    <div class="mvp-org-wrap" itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+    <div class="mvp-org-logo" itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%201%201&#39;%3E%3C/svg%3E" data-src="//thegamerhq.com/wp-content/uploads/2019/06/addtext_com_MDczMTQ3OTIz.png" />
+    <meta itemprop="url" content="//thegamerhq.com/wp-content/uploads/2019/06/addtext_com_MDczMTQ3OTIz.png" />
+    </div>
+    <meta itemprop="name" content="The Gamer HQ – The Real Gaming Headquarters" />
+    </div>
+    <div class="posts-nav-link">
+    </div>
+    <div class="post-tags">
+    <span class="post-tags-header">Related Items:</span><span itemprop="keywords"><a href="https://thegamerhq.com/tag/pokemon-sword-and-shield/" rel="tag">Pokemon Sword and Shield</a>, <a href="https://thegamerhq.com/tag/pokemon-sword-and-shield-download/" rel="tag">Pokemon Sword And Shield Download</a>, <a href="https://thegamerhq.com/tag/pokemon-sword-and-shield-pc-download/" rel="tag">Pokemon Sword And Shield PC Download</a>, <a href="https://thegamerhq.com/tag/pokemon-sword-and-shield-pc-version-full-game-free-download/" rel="tag">Pokemon Sword and Shield PC Version Full Game Free Download</a></span>
+    </div>
+    <div class="social-sharing-bot">
+    <a href="#" onclick="window.open(&#39;http://www.facebook.com/sharer.php?u=https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/&amp;t=Pokemon Sword and Shield PC Version Full Game Free Download&#39;, &#39;facebookShare&#39;, &#39;width=626,height=436&#39;); return false;" title="Share on Facebook"><div class="facebook-share"><span class="fb-but1"><i class="fa fa-facebook fa-2"></i></span><span class="social-text">Share</span></div></a>
+    <a href="#" onclick="window.open(&#39;http://twitter.com/share?text=Pokemon Sword and Shield PC Version Full Game Free Download -&amp;url=https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/&#39;, &#39;twitterShare&#39;, &#39;width=626,height=436&#39;); return false;" title="Tweet This Post"><div class="twitter-share"><span class="twitter-but1"><i class="fa fa-twitter fa-2"></i></span><span class="social-text">Tweet</span></div></a>
+    <a href="whatsapp://send?text=Pokemon Sword and Shield PC Version Full Game Free Download https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/"><div class="whatsapp-share"><span class="whatsapp-but1"><i class="fa fa-whatsapp fa-2"></i></span><span class="social-text">Share</span></div></a>
+    <a href="#" onclick="window.open(&#39;http://pinterest.com/pin/create/button/?url=https://thegamerhq.com/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/&amp;media=https://thegamerhq.com/wp-content/uploads/2021/01/The-Elder-Scrolls-V-Skyrim-1536x768-2-1000x600.jpg&amp;description=Pokemon Sword and Shield PC Version Full Game Free Download&#39;, &#39;pinterestShare&#39;, &#39;width=750,height=350&#39;); return false;" title="Pin This Post"><div class="pinterest-share"><span class="pinterest-but1"><i class="fa fa-pinterest-p fa-2"></i></span><span class="social-text">Share</span></div></a>
+    <a href="/cdn-cgi/l/email-protection#546b2721363e31372069043b3f31393b3a7407233b263074353a3074073c3d31383074041774023126273d3b3a74122138387413353931741226313174103b233a383b3530723539246f161b100d691d74323b213a3074203c3d27743526203d373831743d3a2031263127203d3a3374353a3074203c3b21333c20743b3274273c35263d3a33743d2074233d203c742d3b217a74173c31373f743d20743b21206e743c202024276e7b7b203c3133353931263c257a373b397b666466657b64657b66607b243b3f31393b3a7927233b263079353a3079273c3d31383079243779223126273d3b3a79322138387933353931793226313179303b233a383b353079677b"><div class="email-share"><span class="email-but"><i class="fa fa-envelope fa-2"></i></span><span class="social-text">Email</span></div></a>
+    </div>
+    <div class="mvp-related-posts left relative">
+    <h4 class="post-header"><span class="post-header">Recommended for you</span></h4>
+    <ul>
+    <li>
+    <div class="mvp-related-img left relative">
+    <a href="https://thegamerhq.com/2021/01/01/pokemon-sword-and-shield-pc-version-full-game-free-download-2/" rel="bookmark" title="Pokemon Sword and Shield PC Version Full Game Free Download">
+    <img width="300" height="180" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20180&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2021/01/hqdefault-8-300x180.jpg" class="reg-img wp-post-image lazy" alt="Pokemon Sword and Shield PC Version Full Game Free Download" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2021/01/hqdefault-8-300x180.jpg 300w, https://thegamerhq.com/wp-content/uploads/2021/01/hqdefault-8-450x270.jpg 450w" data-sizes="(max-width: 300px) 100vw, 300px" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2021/01/hqdefault-8-80x80.jpg" class="mob-img wp-post-image lazy" alt="Pokemon Sword and Shield PC Version Full Game Free Download" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2021/01/hqdefault-8-80x80.jpg 80w, https://thegamerhq.com/wp-content/uploads/2021/01/hqdefault-8-150x150.jpg 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> </a>
+    </div>
+    <div class="mvp-related-text left relative">
+    <a href="https://thegamerhq.com/2021/01/01/pokemon-sword-and-shield-pc-version-full-game-free-download-2/">Pokemon Sword and Shield PC Version Full Game Free Download</a>
+    </div>
+    </li>
+    <li>
+    <div class="mvp-related-img left relative">
+    <a href="https://thegamerhq.com/2020/12/15/pokemon-sword-and-shield-pc-version-full-game-free-download/" rel="bookmark" title="Pokemon Sword and Shield PC Version Full Game Free Download">
+    <img width="300" height="180" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20180&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2020/12/hqdefault-315-300x180.jpg" class="reg-img wp-post-image lazy" alt="Pokemon Sword and Shield PC Version Full Game Free Download" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2020/12/hqdefault-315-300x180.jpg 300w, https://thegamerhq.com/wp-content/uploads/2020/12/hqdefault-315-450x270.jpg 450w" data-sizes="(max-width: 300px) 100vw, 300px" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2020/12/hqdefault-315-80x80.jpg" class="mob-img wp-post-image lazy" alt="Pokemon Sword and Shield PC Version Full Game Free Download" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2020/12/hqdefault-315-80x80.jpg 80w, https://thegamerhq.com/wp-content/uploads/2020/12/hqdefault-315-150x150.jpg 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> </a>
+    </div>
+    <div class="mvp-related-text left relative">
+    <a href="https://thegamerhq.com/2020/12/15/pokemon-sword-and-shield-pc-version-full-game-free-download/">Pokemon Sword and Shield PC Version Full Game Free Download</a>
+    </div>
+    </li>
+    <li>
+    <div class="mvp-related-img left relative">
+    <a href="https://thegamerhq.com/2020/10/02/24997/" rel="bookmark" title="Pokemon Sword And Shield iOS/APK Version Full Game Free Download">
+    <img width="300" height="180" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20180&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2020/10/Pokemon-Sword-And-Shield-Free-Download-1068x655-1-300x180.png" class="reg-img wp-post-image lazy" alt="Pokemon Sword And Shield iOS/APK Version Full Game Free Download" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2020/10/Pokemon-Sword-And-Shield-Free-Download-1068x655-1-300x180.png 300w, https://thegamerhq.com/wp-content/uploads/2020/10/Pokemon-Sword-And-Shield-Free-Download-1068x655-1-1000x600.png 1000w, https://thegamerhq.com/wp-content/uploads/2020/10/Pokemon-Sword-And-Shield-Free-Download-1068x655-1-450x270.png 450w" data-sizes="(max-width: 300px) 100vw, 300px" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2020/10/Pokemon-Sword-And-Shield-Free-Download-1068x655-1-80x80.png" class="mob-img wp-post-image lazy" alt="Pokemon Sword And Shield iOS/APK Version Full Game Free Download" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2020/10/Pokemon-Sword-And-Shield-Free-Download-1068x655-1-80x80.png 80w, https://thegamerhq.com/wp-content/uploads/2020/10/Pokemon-Sword-And-Shield-Free-Download-1068x655-1-150x150.png 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> </a>
+    </div>
+    <div class="mvp-related-text left relative">
+    <a href="https://thegamerhq.com/2020/10/02/24997/">Pokemon Sword And Shield iOS/APK Version Full Game Free Download</a>
+    </div>
+    </li>
+    </ul></div> <div id="comments-button" class="left relative comment-click-33280 com-but-33280">
+    <span class="comment-but-text">Click to comment</span>
+    </div>
+    <div id="comments" class="com-click-id-33280 com-click-main">
+    <div id="respond" class="comment-respond">
+    <h3 id="reply-title" class="comment-reply-title"></h3><h4 class="post-header"><span class="post-header">Leave a Reply</span></h4> <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2021/01/24/pokemon-sword-and-shield-pc-version-full-game-free-download-3/#respond" style="display:none;">Cancel reply</a></small><form action="https://thegamerhq.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required" /></p>
+    <p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required" /></p>
+    <p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" /></p>
+    <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type="hidden" name="comment_post_ID" value="33280" id="comment_post_ID" />
+    <input type="hidden" name="comment_parent" id="comment_parent" value="0" />
+    </p><p style="display: none !important;"><label>Δ<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js" name="ak_js" value="119" /><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form> </div>
+    </div> </div>
+    </div>
+    </div>
+    </div>
+    </article>
+    <nav class="navigation post-navigation" role="navigation" aria-label="Posts">
+    <h2 class="screen-reader-text">Post navigation</h2>
+    <div class="nav-links"><div class="nav-previous"><a href="https://thegamerhq.com/2021/01/24/euro-truck-simulator-2-pc-latest-version-game-free-download/" rel="prev">Euro Truck Simulator 2 PC Latest Version Game Free Download</a></div><div class="nav-next"><a href="https://thegamerhq.com/2021/01/24/33282/" rel="next">American Truck Simulator PC Version Game Free Download</a></div></div>
+    </nav> </div>
+    </div>
+    <div id="post-right-col" class="relative">
+    <div class="side-title-wrap left relative">
+    <h3 class="side-list-title">Most Popular</h3>
+    </div>
+    <div class="side-pop-wrap left relative">
+    <div class="feat-widget-cont left relative">
+    <div class="feat-widget-wrap left relative">
+    <a href="https://thegamerhq.com/2022/01/15/homeworld-3-release-date/">
+    <div class="feat-widget-img left relative">
+    <img width="300" height="180" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20180&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/Homeworld-3-release-date-300x180.jpg" class="reg-img wp-post-image lazy" alt="Homeworld 3 release date" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/Homeworld-3-release-date-300x180.jpg 300w, https://thegamerhq.com/wp-content/uploads/2022/01/Homeworld-3-release-date-1000x600.jpg 1000w, https://thegamerhq.com/wp-content/uploads/2022/01/Homeworld-3-release-date-450x270.jpg 450w" data-sizes="(max-width: 300px) 100vw, 300px" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/Homeworld-3-release-date-80x80.jpg" class="mob-img wp-post-image lazy" alt="Homeworld 3 release date" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/Homeworld-3-release-date-80x80.jpg 80w, https://thegamerhq.com/wp-content/uploads/2022/01/Homeworld-3-release-date-150x150.jpg 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> <div class="feat-info-wrap">
+    <div class="feat-info-views">
+    <i class="fa fa-eye fa-2"></i> <span class="feat-info-text">61</span>
+    </div>
+    </div>
+    </div>
+    <div class="feat-widget-text">
+    <span class="side-list-cat">FPS</span>
+    <h2>Homeworld 3 release date</h2>
+    </div>
+    </a>
+    </div>
+    <div class="widget-ad left relative pop-ad">
+    <script type="text/javascript">
+    var infolinks_pid = 3350100;
+    var infolinks_wsid = 0;
+    </script>
+    <script type="text/javascript" src="https://resources.infolinks.com/js/infolinks_main.js"></script> </div>
+    <div class="feat-widget-wrap left relative">
+    <a href="https://thegamerhq.com/2022/01/15/nintendos-twitter-accounts-have-released-a-new-trailer-that-finally-reveals-the-release-date-for-kirbys-first-3d-platformer-kirby-and-the-forgotten-land/">
+    <div class="feat-widget-img left relative">
+    <img width="300" height="180" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20180&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/Nintendo-grants-Kirby-a-release-date-and-a-gun-for-Kirbys-3D-platformer-Kirby-The-Forgotten-Land-300x180.jpg" class="reg-img wp-post-image lazy" alt="Nintendo&#39;s Twitter accounts have released a new trailer that finally reveals the release date for Kirby&#39;s first 3D platformer, Kirby and The Forgotten Land." loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/Nintendo-grants-Kirby-a-release-date-and-a-gun-for-Kirbys-3D-platformer-Kirby-The-Forgotten-Land-300x180.jpg 300w, https://thegamerhq.com/wp-content/uploads/2022/01/Nintendo-grants-Kirby-a-release-date-and-a-gun-for-Kirbys-3D-platformer-Kirby-The-Forgotten-Land-1000x600.jpg 1000w, https://thegamerhq.com/wp-content/uploads/2022/01/Nintendo-grants-Kirby-a-release-date-and-a-gun-for-Kirbys-3D-platformer-Kirby-The-Forgotten-Land-450x270.jpg 450w" data-sizes="(max-width: 300px) 100vw, 300px" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/Nintendo-grants-Kirby-a-release-date-and-a-gun-for-Kirbys-3D-platformer-Kirby-The-Forgotten-Land-80x80.jpg" class="mob-img wp-post-image lazy" alt="Nintendo&#39;s Twitter accounts have released a new trailer that finally reveals the release date for Kirby&#39;s first 3D platformer, Kirby and The Forgotten Land." loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/Nintendo-grants-Kirby-a-release-date-and-a-gun-for-Kirbys-3D-platformer-Kirby-The-Forgotten-Land-80x80.jpg 80w, https://thegamerhq.com/wp-content/uploads/2022/01/Nintendo-grants-Kirby-a-release-date-and-a-gun-for-Kirbys-3D-platformer-Kirby-The-Forgotten-Land-150x150.jpg 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> <div class="feat-info-wrap">
+    <div class="feat-info-views">
+    <i class="fa fa-eye fa-2"></i> <span class="feat-info-text">60</span>
+    </div>
+    </div>
+    </div>
+    <div class="feat-widget-text">
+    <span class="side-list-cat">FPS</span>
+    <h2>Nintendo’s Twitter accounts have released a new trailer that finally reveals the release date for Kirby’s first 3D platformer, Kirby and The Forgotten Land.</h2>
+    </div>
+    </a>
+    </div>
+    <div class="feat-widget-wrap left relative">
+    <a href="https://thegamerhq.com/2022/01/15/brawlhalla-patch-notes-january-2022-tentative-changes-are-made-to-brawlhalla-site/">
+    <div class="feat-widget-img left relative">
+    <img width="300" height="180" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20180&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/Brawlhalla-patch-notes-January-2022-tentative-changes-are-made-to-Brawlhalla-site-300x180.jpg" class="reg-img wp-post-image lazy" alt="Brawlhalla patch notes: January 2022 tentative changes are made to Brawlhalla site" loading="lazy" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/Brawlhalla-patch-notes-January-2022-tentative-changes-are-made-to-Brawlhalla-site-80x80.jpg" class="mob-img wp-post-image lazy" alt="Brawlhalla patch notes: January 2022 tentative changes are made to Brawlhalla site" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/Brawlhalla-patch-notes-January-2022-tentative-changes-are-made-to-Brawlhalla-site-80x80.jpg 80w, https://thegamerhq.com/wp-content/uploads/2022/01/Brawlhalla-patch-notes-January-2022-tentative-changes-are-made-to-Brawlhalla-site-150x150.jpg 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> <div class="feat-info-wrap">
+    <div class="feat-info-views">
+    <i class="fa fa-eye fa-2"></i> <span class="feat-info-text">59</span>
+    </div>
+    </div>
+    </div>
+    <div class="feat-widget-text">
+    <span class="side-list-cat">Casual</span>
+    <h2>Brawlhalla patch notes: January 2022 tentative changes are made to Brawlhalla site</h2>
+    </div>
+    </a>
+    </div>
+    <div class="feat-widget-wrap left relative">
+    <a href="https://thegamerhq.com/2022/01/14/disney-patents-new-virtual-world-simulator-technology-2/">
+    <div class="feat-widget-img left relative">
+    <img width="300" height="180" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20180&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/DISNEY-PATENTS-NEW-‘VIRTUAL-300x180.png" class="reg-img wp-post-image lazy" alt="DISNEY PATENTS NEW &#39;VIRTUAL-WORLD SIMULATOR&#39; TECHNOLOGY" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/DISNEY-PATENTS-NEW-‘VIRTUAL-300x180.png 300w, https://thegamerhq.com/wp-content/uploads/2022/01/DISNEY-PATENTS-NEW-‘VIRTUAL-450x270.png 450w" data-sizes="(max-width: 300px) 100vw, 300px" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/DISNEY-PATENTS-NEW-‘VIRTUAL-80x80.png" class="mob-img wp-post-image lazy" alt="DISNEY PATENTS NEW &#39;VIRTUAL-WORLD SIMULATOR&#39; TECHNOLOGY" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/DISNEY-PATENTS-NEW-‘VIRTUAL-80x80.png 80w, https://thegamerhq.com/wp-content/uploads/2022/01/DISNEY-PATENTS-NEW-‘VIRTUAL-150x150.png 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> <div class="feat-info-wrap">
+    <div class="feat-info-views">
+    <i class="fa fa-eye fa-2"></i> <span class="feat-info-text">58</span>
+    </div>
+    </div>
+    </div>
+    <div class="feat-widget-text">
+    <span class="side-list-cat">ADVENTURE</span>
+    <h2>DISNEY PATENTS NEW ‘VIRTUAL-WORLD SIMULATOR’ TECHNOLOGY</h2>
+    </div>
+    </a>
+    </div>
+    <div class="feat-widget-wrap left relative">
+    <a href="https://thegamerhq.com/2022/01/14/keengamer-podcast-99-reading-all-9-mcu-releases-starting-in-2021/">
+    <div class="feat-widget-img left relative">
+    <img width="300" height="168" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20168&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/KEENGAMER-PODCAST-EPISODE-99.jpg" class="reg-img wp-post-image lazy" alt="KEENGAMER PODCAST 99: READING ALL 9 MCU RELEASES STARTING IN 2021" loading="lazy" /> <img width="80" height="80" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%2080%2080&#39;%3E%3C/svg%3E" data-src="https://thegamerhq.com/wp-content/uploads/2022/01/KEENGAMER-PODCAST-EPISODE-99-80x80.jpg" class="mob-img wp-post-image lazy" alt="KEENGAMER PODCAST 99: READING ALL 9 MCU RELEASES STARTING IN 2021" loading="lazy" data-srcset="https://thegamerhq.com/wp-content/uploads/2022/01/KEENGAMER-PODCAST-EPISODE-99-80x80.jpg 80w, https://thegamerhq.com/wp-content/uploads/2022/01/KEENGAMER-PODCAST-EPISODE-99-150x150.jpg 150w" data-sizes="(max-width: 80px) 100vw, 80px" /> <div class="feat-info-wrap">
+    <div class="feat-info-views">
+    <i class="fa fa-eye fa-2"></i> <span class="feat-info-text">53</span>
+    </div>
+    </div>
+    </div>
+    <div class="feat-widget-text">
+    <span class="side-list-cat">Strategy</span>
+    <h2>KEENGAMER PODCAST 99: READING ALL 9 MCU RELEASES STARTING IN 2021</h2>
+    </div>
+    </a>
+    </div>
+    </div>
+    </div> </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <footer id="foot-wrap" class="left relative">
+    <div id="foot-top-wrap" class="left relative">
+    <div class="body-main-out relative">
+    <div class="body-main-in">
+    <div id="foot-widget-wrap" class="left relative">
+    <div class="foot-widget left relative">
+    <div class="foot-logo left realtive">
+    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%201%201&#39;%3E%3C/svg%3E" data-src="//thegamerhq.com/wp-content/uploads/2019/06/addtext_com_MDcyNTE1ODg3.png" alt="The Gamer HQ – The Real Gaming Headquarters" data-rjs="2" />
+    </div>
+    <div class="foot-info-text left relative">
+    <p>Gamer HQ is the real Head Quarters for Gaming News from around the Gaming Universe . </p><p> </p></div>
+    <div class="foot-soc left relative">
+    <ul class="foot-soc-list relative">
+    <li class="foot-soc-rss">
+    <a href="https://thegamerhq.com/feed/rss/" target="_blank"><i class="fa fa-rss-square fa-2"></i></a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div id="pages-4" class="foot-widget left relative widget_pages"><h3 class="foot-head">Pages</h3>
+    <ul>
+    <li class="page_item page-item-55"><a href="https://thegamerhq.com/about-us/">About Us</a></li>
+    <li class="page_item page-item-41"><a href="https://thegamerhq.com/contact-us/">Contact Us</a></li>
+    <li class="page_item page-item-52776"><a href="https://thegamerhq.com/cookie-policy/">Cookie Policy</a></li>
+    <li class="page_item page-item-39"><a href="https://thegamerhq.com/disclaimer/">Disclaimer</a></li>
+    <li class="page_item page-item-15"><a href="https://thegamerhq.com/dmca-policy/">DMCA Policy</a></li>
+    <li class="page_item page-item-78"><a href="https://thegamerhq.com/">Home</a></li>
+    <li class="page_item page-item-95"><a href="https://thegamerhq.com/our-staff/">Our Staff</a></li>
+    <li class="page_item page-item-7"><a href="https://thegamerhq.com/privacy-policy-2/">Privacy Policy</a></li>
+    <li class="page_item page-item-58"><a href="https://thegamerhq.com/terms-and-conditions/">Terms and Conditions</a></li>
+    <li class="page_item page-item-47230"><a href="https://thegamerhq.com/write-for-us/">Write For Us</a></li>
+    </ul>
+    </div><div id="custom_html-3" class="widget_text foot-widget left relative widget_custom_html"><h3 class="foot-head">Contact Us</h3><div class="textwidget custom-html-widget">4829 Canis Heights Drive, Los Angeles,
+    CA 90071
+    <p><strong>Contact Number:</strong><br />
+    <strong>Phone:</strong> +(1) 715-508-1232</p>
+    <strong>General, Editorial and Technical Enquiries:</strong><br />
+    <strong>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97e3fff2f0f6faf2e5ffe6a4d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a></strong></div></div> </div>
+    </div>
+    </div>
+    </div>
+    <div id="foot-bot-wrap" class="left relative">
+    <div class="body-main-out relative">
+    <div class="body-main-in">
+    <div id="foot-bot" class="left relative">
+    <div class="foot-menu relative">
+    <div class="menu"><ul>
+    <li class="page_item page-item-55"><a href="https://thegamerhq.com/about-us/">About Us</a></li>
+    <li class="page_item page-item-41"><a href="https://thegamerhq.com/contact-us/">Contact Us</a></li>
+    <li class="page_item page-item-52776"><a href="https://thegamerhq.com/cookie-policy/">Cookie Policy</a></li>
+    <li class="page_item page-item-39"><a href="https://thegamerhq.com/disclaimer/">Disclaimer</a></li>
+    <li class="page_item page-item-15"><a href="https://thegamerhq.com/dmca-policy/">DMCA Policy</a></li>
+    <li class="page_item page-item-78"><a href="https://thegamerhq.com/">Home</a></li>
+    <li class="page_item page-item-95"><a href="https://thegamerhq.com/our-staff/">Our Staff</a></li>
+    <li class="page_item page-item-7"><a href="https://thegamerhq.com/privacy-policy-2/">Privacy Policy</a></li>
+    <li class="page_item page-item-58"><a href="https://thegamerhq.com/terms-and-conditions/">Terms and Conditions</a></li>
+    <li class="page_item page-item-47230"><a href="https://thegamerhq.com/write-for-us/">Write For Us</a></li>
+    </ul></div>
+    </div>
+    <div class="foot-copy relative">
+    <p>Copyright © 2021, powered by The Gamer HQ.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </footer>
+    </div>
+    </div>
+    </div>
+    <div class="fly-to-top back-to-top">
+    <i class="fa fa-angle-up fa-3"></i>
+    <span class="to-top-text">To Top</span>
+    </div>
+    <div class="fly-fade">
+    </div>
+    <!--googleoff: all--><div id="cookie-law-info-bar" data-nosnippet="true"><span><div class="cli-bar-container cli-style-v2"><div class="cli-bar-message">We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking “Accept”, you consent to the use of ALL the cookies.<br /><div class="wt-cli-ccpa-element"> <a href="javascript:void(0)" style="color:#333333;" class="wt-cli-ccpa-opt-out">Do not sell my personal information</a>.</div></div><div class="cli-bar-btn_container"><a role="button" tabindex="0" class="medium cli-plugin-button cli-plugin-main-button cli_settings_button" style="margin:0px 10px 0px 5px;">Cookie Settings</a><a role="button" tabindex="0" data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button" style="display:inline-block; ">Accept</a></div></div></span></div><div id="cookie-law-info-again" style="display:none;" data-nosnippet="true"><span id="cookie_hdr_showagain">Manage consent</span></div><div class="cli-modal" data-nosnippet="true" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="cliSettingsPopup" aria-hidden="true">
+    <div class="cli-modal-dialog" role="document">
+    <div class="cli-modal-content cli-bar-popup">
+    <button type="button" class="cli-modal-close" id="cliModalClose">
+    <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+    <span class="wt-cli-sr-only">Close</span>
+    </button>
+    <div class="cli-modal-body">
+    <div class="cli-container-fluid cli-tab-container">
+    <div class="cli-row">
+    <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+    <div class="cli-privacy-overview">
+    <h4>Privacy Overview</h4> <div class="cli-privacy-content">
+    <div class="cli-privacy-content-text">This website uses cookies to improve your experience while you navigate through the website. Out of these, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may affect your browsing experience.</div>
+    </div>
+    <a class="cli-privacy-readmore" aria-label="Show more" tabindex="0" role="button" data-readmore-text="Show more" data-readless-text="Show less"></a> </div>
+    </div>
+    <div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+    <div class="cli-tab-section">
+    <div class="cli-tab-header">
+    <a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+    Necessary </a>
+    <div class="wt-cli-necessary-checkbox">
+    <input type="checkbox" class="cli-user-preference-checkbox" id="wt-cli-checkbox-necessary" data-id="checkbox-necessary" checked="checked" />
+    <label class="form-check-label" for="wt-cli-checkbox-necessary">Necessary</label>
+    </div>
+    <span class="cli-necessary-caption">Always Enabled</span> </div>
+    <div class="cli-tab-content">
+    <div class="cli-tab-pane cli-fade" data-id="necessary">
+    <div class="wt-cli-cookie-description">
+    Necessary cookies are absolutely essential for the website to function properly. These cookies ensure basic functionalities and security features of the website, anonymously.
+    <table class="cookielawinfo-row-cat-table cookielawinfo-winter"><thead><tr><th class="cookielawinfo-column-1">Cookie</th><th class="cookielawinfo-column-3">Duration</th><th class="cookielawinfo-column-4">Description</th></tr></thead><tbody><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-analytics</td><td class="cookielawinfo-column-3">11 months</td><td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookie is used to store the user consent for the cookies in the category &#34;Analytics&#34;.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-functional</td><td class="cookielawinfo-column-3">11 months</td><td class="cookielawinfo-column-4">The cookie is set by GDPR cookie consent to record the user consent for the cookies in the category &#34;Functional&#34;.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-necessary</td><td class="cookielawinfo-column-3">11 months</td><td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookies is used to store the user consent for the cookies in the category &#34;Necessary&#34;.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-others</td><td class="cookielawinfo-column-3">11 months</td><td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookie is used to store the user consent for the cookies in the category &#34;Other.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-performance</td><td class="cookielawinfo-column-3">11 months</td><td class="cookielawinfo-column-4">This cookie is set by GDPR Cookie Consent plugin. The cookie is used to store the user consent for the cookies in the category &#34;Performance&#34;.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">viewed_cookie_policy</td><td class="cookielawinfo-column-3">11 months</td><td class="cookielawinfo-column-4">The cookie is set by the GDPR Cookie Consent plugin and is used to store whether or not user has consented to the use of cookies. It does not store any personal data.</td></tr></tbody></table> </div>
+    </div>
+    </div>
+    </div>
+    <div class="cli-tab-section">
+    <div class="cli-tab-header">
+    <a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="functional" data-toggle="cli-toggle-tab">
+    Functional </a>
+    <div class="cli-switch">
+    <input type="checkbox" id="wt-cli-checkbox-functional" class="cli-user-preference-checkbox" data-id="checkbox-functional" />
+    <label for="wt-cli-checkbox-functional" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Functional</span></label>
+    </div> </div>
+    <div class="cli-tab-content">
+    <div class="cli-tab-pane cli-fade" data-id="functional">
+    <div class="wt-cli-cookie-description">
+    Functional cookies help to perform certain functionalities like sharing the content of the website on social media platforms, collect feedbacks, and other third-party features.
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="cli-tab-section">
+    <div class="cli-tab-header">
+    <a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="performance" data-toggle="cli-toggle-tab">
+    Performance </a>
+    <div class="cli-switch">
+    <input type="checkbox" id="wt-cli-checkbox-performance" class="cli-user-preference-checkbox" data-id="checkbox-performance" />
+    <label for="wt-cli-checkbox-performance" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Performance</span></label>
+    </div> </div>
+    <div class="cli-tab-content">
+    <div class="cli-tab-pane cli-fade" data-id="performance">
+    <div class="wt-cli-cookie-description">
+    Performance cookies are used to understand and analyze the key performance indexes of the website which helps in delivering a better user experience for the visitors.
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="cli-tab-section">
+    <div class="cli-tab-header">
+    <a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="analytics" data-toggle="cli-toggle-tab">
+    Analytics </a>
+    <div class="cli-switch">
+    <input type="checkbox" id="wt-cli-checkbox-analytics" class="cli-user-preference-checkbox" data-id="checkbox-analytics" />
+    <label for="wt-cli-checkbox-analytics" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Analytics</span></label>
+    </div> </div>
+    <div class="cli-tab-content">
+    <div class="cli-tab-pane cli-fade" data-id="analytics">
+    <div class="wt-cli-cookie-description">
+    Analytical cookies are used to understand how visitors interact with the website. These cookies help provide information on metrics the number of visitors, bounce rate, traffic source, etc.
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="cli-tab-section">
+    <div class="cli-tab-header">
+    <a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="advertisement" data-toggle="cli-toggle-tab">
+    Advertisement </a>
+    <div class="cli-switch">
+    <input type="checkbox" id="wt-cli-checkbox-advertisement" class="cli-user-preference-checkbox" data-id="checkbox-advertisement" />
+    <label for="wt-cli-checkbox-advertisement" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Advertisement</span></label>
+    </div> </div>
+    <div class="cli-tab-content">
+    <div class="cli-tab-pane cli-fade" data-id="advertisement">
+    <div class="wt-cli-cookie-description">
+    Advertisement cookies are used to provide visitors with relevant ads and marketing campaigns. These cookies track visitors across websites and collect information to provide customized ads.
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="cli-tab-section">
+    <div class="cli-tab-header">
+    <a role="button" tabindex="0" class="cli-nav-link cli-settings-mobile" data-target="others" data-toggle="cli-toggle-tab">
+    Others </a>
+    <div class="cli-switch">
+    <input type="checkbox" id="wt-cli-checkbox-others" class="cli-user-preference-checkbox" data-id="checkbox-others" />
+    <label for="wt-cli-checkbox-others" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">Others</span></label>
+    </div> </div>
+    <div class="cli-tab-content">
+    <div class="cli-tab-pane cli-fade" data-id="others">
+    <div class="wt-cli-cookie-description">
+    Other uncategorized cookies are those that are being analyzed and have not been classified into a category as yet.
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="cli-modal-footer">
+    <div class="wt-cli-element cli-container-fluid cli-tab-container">
+    <div class="cli-row">
+    <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+    <div class="cli-tab-footer wt-cli-privacy-overview-actions">
+    <a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn">SAVE &amp; ACCEPT</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+    <div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+    <!--googleon: all--><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">var jQueryScriptOutputted = false;function initJQuery() {if (typeof(jQuery) == "undefined") {if (!jQueryScriptOutputted) {jQueryScriptOutputted = true;document.write("<scr" + "ipt type=\"text/javascript\" src=\"https://code.jquery.com/jquery-1.8.2.min.js\"></scr" + "ipt>");}setTimeout("initJQuery()", 50);}}initJQuery();</script><script type="text/javascript">jQuery(document).ready(function() {
+    jQuery(".bc2d3e28feb14e99feb8e40f0e891921").click(function() {
+    jQuery.post(
+    "https://thegamerhq.com/wp-admin/admin-ajax.php", {
+    "action": "quick_adsense_onpost_ad_click",
+    "quick_adsense_onpost_ad_index": jQuery(this).attr("data-index"),
+    "quick_adsense_nonce": "5e34b02d37",
+    }, function(response) { }
+    );
+    });
+    });
+    </script>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    
+        // Back to Top Button
+            var duration = 500;
+            $('.back-to-top').click(function(event) {
+              event.preventDefault();
+              $('html, body').animate({scrollTop: 0}, duration);
+              return false;
+        });
+    
+        // Main Menu Dropdown Toggle
+        $('.menu-item-has-children a').click(function(event){
+          event.stopPropagation();
+          location.href = this.href;
+          });
+    
+        $('.menu-item-has-children').click(function(){
+              $(this).addClass('toggled');
+              if($('.menu-item-has-children').hasClass('toggled'))
+              {
+              $(this).children('ul').toggle();
+          $('.fly-nav-menu').getNiceScroll().resize();
+          }
+          $(this).toggleClass('tog-minus');
+              return false;
+          });
+    
+        // Main Menu Scroll
+        $(window).load(function(){
+          $('.fly-nav-menu').niceScroll({cursorcolor:"#888",cursorwidth: 7,cursorborder: 0,zindex:999999});
+        });
+    
+              $(".comment-click-33280").on("click", function(){
+            $(".com-click-id-33280").show();
+          $(".disqus-thread-33280").show();
+            $(".com-but-33280").hide();
+          });
+        
+        // Infinite Scroll
+        $('.infinite-content').infinitescroll({
+          navSelector: ".nav-links",
+          nextSelector: ".nav-links a:first",
+          itemSelector: ".infinite-post",
+          loading: {
+            msgText: "Loading more posts...",
+            finishedMsg: "Sorry, no more posts"
+          },
+          errorCallback: function(){ $(".inf-more-but").css("display", "none") }
+        });
+        $(window).unbind('.infscr');
+        $(".inf-more-but").click(function(){
+               $('.infinite-content').infinitescroll('retrieve');
+                return false;
+        });
+        $(window).load(function(){
+            if ($('.nav-links a').length) {
+                $('.inf-more-but').css('display','inline-block');
+            } else {
+                $('.inf-more-but').css('display','none');
+            }
+        });
+    
+    $(window).load(function() {
+      // The slider being synced must be initialized first
+      $('.post-gallery-bot').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: true,
+        slideshow: false,
+        itemWidth: 80,
+        itemMargin: 10,
+        asNavFor: '.post-gallery-top'
+      });
+    
+      $('.post-gallery-top').flexslider({
+        animation: "fade",
+        controlNav: false,
+        animationLoop: true,
+        slideshow: false,
+              prevText: "&lt;",
+              nextText: "&gt;",
+        sync: ".post-gallery-bot"
+      });
+    });
+    
+    });
+    
+    </script>
+    <link rel="stylesheet" href="https://thegamerhq.com/wp-content/cache/minify/5abc0.css" media="all" />
+    <script src="https://thegamerhq.com/wp-content/cache/minify/69faf.js"></script>
+    <script type="text/javascript" id="rtrar.appLocal-js-extra">
+    /* <![CDATA[ */
+    var rtafr = {"rules":""};
+    /* ]]> */
+    </script>
+    <script src="https://thegamerhq.com/wp-content/cache/minify/a8c9f.js"></script>
+    <script type="text/javascript" src="https://cdn.onesignal.com/sdks/OneSignalSDK.js?ver=5.8.3" async="async" id="remote_sdk-js"></script>
+    <script src="https://stats.wp.com/e-202203.js" defer=""></script>
+    <script>
+        _stq = window._stq || [];
+        _stq.push([ 'view', {v:'ext',j:'1:10.3',blog:'195513169',post:'33280',tz:'5',srv:'thegamerhq.com'} ]);
+        _stq.push([ 'clickTrackerInit', '195513169', '33280' ]);
+    </script>
+    <script>window.w3tc_lazyload=1,window.lazyLoadOptions={elements_selector:".lazy",callback_loaded:function(t){var e;try{e=new CustomEvent("w3tc_lazyload_loaded",{detail:{e:t}})}catch(a){(e=document.createEvent("CustomEvent")).initCustomEvent("w3tc_lazyload_loaded",!1,!1,{e:t})}window.dispatchEvent(e)}}</script><script async="" src="https://thegamerhq.com/wp-content/cache/minify/1615d.js"></script>
+    <script type='text/javascript' style='display:none;' async>
+    </script>
+    <script type="text/javascript" data-cfasync="false"></script></body></html>
